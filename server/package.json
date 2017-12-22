@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "sample app",
+  "main": "app.js",
+  "scripts": {
+    "test": "(dropdb --if-exists test-randomPost && createdb test-randomPost) && NODE_ENV=test mocha"
+  },
+  "author": "Will Sheppard",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "knex": "^0.14.2",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
+  }
+}
