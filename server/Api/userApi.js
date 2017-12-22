@@ -5,7 +5,8 @@
 */
 
 const router = require('express').Router(),
-knex = require('../db/knex.js');
+    queries = require('../db/queries'),
+    knex = require('../db/knex.js');
 
 
 
@@ -16,16 +17,12 @@ knex = require('../db/knex.js');
 |  CRUD
 |--------------------------------------------------------------------------
 */
-router  
+router
     .route('/')
-    .get( (request, response) => {
-        return knex.select()
-            .from('users')
-            .then((user) => {
-                response.json(user);
-            });
+    .get((request, response) => {
+        queries.getAll('users').then((user) => response.json(user));
     })
-    .post((request,response) => {
+    .post((request, response) => {
         return knex.select()
             .from('users')
             .insert({
@@ -33,6 +30,22 @@ router
                 password: password
             })
     });
+
+
+
+
+
+router.get('/:id', (request, response) => {
+    queries.getOne('users', request.params.id).then((user) => { 
+        if(user) { 
+            response.json(user);
+        } else {
+            response.json({ message: 'not found'});
+        }
+        
+    })
+});
+
 
 
 

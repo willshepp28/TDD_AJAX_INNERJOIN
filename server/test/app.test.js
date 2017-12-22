@@ -36,4 +36,20 @@ describe('randomPost CRUD', () => {
                 done();
             })
     })
+
+
+
+    it('GET a user by id', (done) => {
+        request(application)
+            .get('/api/v1/users/1')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', 'application/json; charset=utf-8')
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                expect(response.body).to.deep.equal(fixtures.users[0]);
+                console.log(response.body);
+                done();
+            })
+    })
 })
